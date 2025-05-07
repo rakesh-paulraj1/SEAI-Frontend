@@ -1,36 +1,34 @@
-# docker-compose.yml
 version: '3.8'
 
 services:
   frontend:
     build:
-      context: ./SEAI-Frontend
+      context: ./SEAI-Frontend 
       dockerfile: Dockerfile
     container_name: react-app
     ports:
       - "8080:8080"
     volumes:
-      - ./frontend:/app
-      - /app/node_modules
+      - ./SEAI-Frontend:/app 
+      - /app/node_modules    
     environment:
-      - VITE_BACKENDURL=http://localhost:3000
+      - VITE_BACKENDURL=http://localhost:3000  
     networks:
       - app-network
 
   backend:
     build:
-      context: ./SEAI_backend
+      context: ./SEAI_backend 
       dockerfile: Dockerfile
     container_name: node-app
     ports:
-      - "3000:3000"
+      - "3000:3000" 
     volumes:
-      - ./backend:/app
-      - /app/node_modules
+      - ./SEAI_backend:/app  
+      - /app/node_modules    
     environment:
-      - FRONTENDURL=http://localhost:8080
-      - GEMINIAIKEY=AIzaSyDzCRW-UMRzufhMHmsHIFnb_emfKRMbKYY
-
+      - FRONTENDURL=http://localhost:8080  
+      - GEMINIAIKEY=AIzaSyDzCRW-UMRzufhMHmsHIFnb_emfKRMbKYY  
     networks:
       - app-network
 
